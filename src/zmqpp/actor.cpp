@@ -17,6 +17,8 @@
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
+#include <exception>
+#include <stdexcept>
 
 #include "actor.hpp"
 #include "socket.hpp"
@@ -60,7 +62,11 @@ namespace zmqpp
         }
         catch (std::exception &e)
         {
+#if _MSC_VER < 1900
+          throw actor_initialization_exception();
+#else
           std::throw_with_nested(actor_initialization_exception());
+#endif
         }
       }
       else

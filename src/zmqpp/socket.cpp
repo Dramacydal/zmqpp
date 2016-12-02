@@ -23,6 +23,10 @@
 #include "message.hpp"
 #include "socket.hpp"
 
+#ifdef min
+# undef min
+#endif
+
 namespace zmqpp
 {
 
